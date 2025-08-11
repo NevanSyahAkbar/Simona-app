@@ -12,9 +12,9 @@ class Perlengkapan extends Model
 
     use HasFactory, LogsActivity;
     protected $fillable = [
-    'tahun', 'sub_bagian', 'pekerjaan', 'date_nd_user', 'date_survey', 'date_nd_ijin',
+    'user_id','tahun', 'sub_bagian', 'pekerjaan', 'date_nd_user', 'date_survey', 'date_nd_ijin',
     'date_pr', 'pr_number', 'po_number', 'gr_number', 'order_padi', 'bast_user',
-    'nd_pembayaran', 'dpp', 'mitra', 'status', 'keterangan', 'user_id'
+    'nd_pembayaran', 'dpp', 'mitra', 'status', 'keterangan'
     ];
 
 }
