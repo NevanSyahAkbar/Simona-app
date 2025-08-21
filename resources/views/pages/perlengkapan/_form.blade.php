@@ -199,7 +199,7 @@
 document.addEventListener('DOMContentLoaded', function () {
 
     // =================================================
-    // LOGIKA UNTUK MODAL KONFIRMASI SIMPAN
+    // LOGIKA UNTUK MODAL KONFIRMASI SIMPAN (DIMODIFIKASI)
     // =================================================
     const openConfirmationBtn = document.getElementById('open-confirmation-modal-btn');
     const confirmationModal = document.getElementById('confirmation-modal');
@@ -211,40 +211,23 @@ document.addEventListener('DOMContentLoaded', function () {
         const mainForm = openConfirmationBtn.closest('form');
 
         openConfirmationBtn.addEventListener('click', function() {
-            // Kumpulkan semua data dari form
+            // Logika untuk menampilkan modal (ini sudah benar, tidak perlu diubah)
             const formData = new FormData(mainForm);
             let summaryHtml = '<dl class="grid grid-cols-1 md:grid-cols-2 gap-x-4 gap-y-2">';
-
-            // Daftar label yang lebih ramah pengguna
             const labels = {
-                tahun: 'Tahun',
-                sub_bagian: 'Sub-Bagian',
-                pekerjaan: 'Pekerjaan',
-                date_nd_user: 'Date ND User',
-                date_survey: 'Date Survey',
-                date_nd_ijin: 'Date ND Ijin',
-                date_pr: 'Date PR',
-                bast_user: 'Bast User',
-                nd_pembayaran: 'ND Pembayaran',
-                pr_number: 'PR',
-                po_number: 'PO',
-                gr_number: 'GR',
-                order_padi: 'Order PADI',
-                status: 'Status',
-                dpp: 'DPP',
-                mitra: 'MITRA',
-                keterangan: 'Keterangan'
+                tahun: 'Tahun', sub_bagian: 'Sub-Bagian', pekerjaan: 'Pekerjaan',
+                date_nd_user: 'Date ND User', date_survey: 'Date Survey', date_nd_ijin: 'Date ND Ijin',
+                date_pr: 'Date PR', bast_user: 'Bast User', nd_pembayaran: 'ND Pembayaran',
+                pr_number: 'PR', po_number: 'PO', gr_number: 'GR',
+                order_padi: 'Order PADI', status: 'Status', dpp: 'DPP',
+                mitra: 'MITRA', keterangan: 'Keterangan'
             };
-
             for (const [key, value] of formData.entries()) {
-                // Abaikan field token
                 if (key === '_token' || key === '_method') continue;
-
                 const label = labels[key] || key;
-                const displayValue = value || '-'; // Tampilkan '-' jika kosong
+                const displayValue = value || '-';
                 summaryHtml += `<dt class="font-semibold">${label}</dt><dd class="mb-2">${displayValue}</dd>`;
             }
-
             summaryHtml += '</dl>';
             summaryDiv.innerHTML = summaryHtml;
             confirmationModal.classList.remove('hidden');
@@ -254,9 +237,88 @@ document.addEventListener('DOMContentLoaded', function () {
             confirmationModal.classList.add('hidden');
         });
 
-        confirmSaveBtn.addEventListener('click', function() {
-            mainForm.submit();
+        // =======================================================
+        // PERUBAHAN UTAMA DIMULAI DARI SINI
+        // =======================================================
+        confirmSaveBtn.addEventListener('click', async function() {
+            // Ubah tampilan tombol untuk menunjukkan proses loading
+            confirmSaveBtn.disabled = true;
+            confirmSaveBtn.innerHTML = 'Menyimpan...';
+
+            // Ambil data form
+            const formData = new FormData(mainForm);
+            // URL tujuan dari form Anda (action)
+            const formActionUrl = mainForm.action;
+            // Metode form (POST atau PUT/PATCH)
+            const formMethod = mainForm.querySelector('input[name="_method"]')?.value || mainForm.method;
+
+
+            try {
+                // --- API Call #1: Simpan data ke server Laravel Anda ---
+                const responseLaravel = await fetch(formActionUrl, {
+                    method: 'POST', // Fetch selalu POST, metode asli (PUT/PATCH) dikirim dalam body
+                    headers: {
+                        'Accept': 'application/json', // Penting: minta response JSON dari Laravel
+                        'X-CSRF-TOKEN': formData.get('_token')
+                    },
+                    body: formData
+                });
+
+                const resultLaravel = await responseLaravel.json();
+
+                // Jika validasi gagal (status 422) atau ada error server
+                if (!responseLaravel.ok) {
+                    // Tampilkan error dari Laravel (jika ada)
+                    const errorMessage = resultLaravel.message || 'Terjadi kesalahan saat menyimpan data.';
+                    throw new Error(errorMessage);
+                }
+
+                console.log('Sukses menyimpan ke Laravel:', resultLaravel.message);
+
+                // --- API Call #2: Kirim data ke API lain (jika #1 sukses) ---
+                console.log('Mengirim data ke API eksternal...');
+                // Buat objek data bersih tanpa _token dan _method
+                const dataUntukApiLain = Object.fromEntries(formData.entries());
+                delete dataUntukApiLain['_token'];
+                delete dataUntukApiLain['_method'];
+
+                const responseEksternal = await fetch('URL_API_LAIN_YANG_DITUJU', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        // 'Authorization': 'Bearer YOUR_OTHER_API_TOKEN' // Jika perlu
+                    },
+                    body: JSON.stringify(dataUntukApiLain)
+                });
+
+                if (!responseEksternal.ok) {
+                    // Jika API kedua gagal, proses tetap dianggap berhasil secara lokal
+                    // tapi beri notifikasi khusus.
+                    console.warn('Data berhasil disimpan, tapi gagal dikirim ke API eksternal.');
+                    // Anda bisa memutuskan untuk tetap melanjutkan atau menampilkan error
+                } else {
+                    console.log('Sukses mengirim ke API eksternal.');
+                }
+
+                // Jika semua proses selesai, tampilkan notifikasi dan redirect
+                alert('Data berhasil disimpan!');
+
+                // Arahkan pengguna ke halaman index atau halaman lain dari response Laravel
+                window.location.href = resultLaravel.redirect_url;
+
+            } catch (error) {
+                // Tangani semua jenis error di sini
+                console.error('Error:', error);
+                alert(`Gagal: ${error.message}`);
+
+                // Kembalikan tombol ke keadaan semula jika gagal
+                confirmSaveBtn.disabled = false;
+                confirmSaveBtn.innerHTML = 'Konfirmasi & Simpan';
+            }
         });
+        // =======================================================
+        // PERUBAHAN UTAMA BERAKHIR DI SINI
+        // =======================================================
     }
 
 

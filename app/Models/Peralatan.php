@@ -10,6 +10,11 @@ class Peralatan extends Model
 {
     use HasFactory;
 
+    protected $table = 'peralatans';
+
+    protected $guarded = ['id']; // Asumsi Anda menggunakan ini
+
+
     use HasFactory, LogsActivity;
      protected $fillable = [
         'tahun',
@@ -25,5 +30,8 @@ class Peralatan extends Model
         'status',
         'keterangan',
         'user_id',
+    ];
+    protected $casts = [
+        'sync' => 'boolean',
     ];
 }

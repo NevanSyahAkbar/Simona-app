@@ -33,6 +33,7 @@ return new class extends Migration
         $table->string('status');
         $table->text('keterangan')->nullable();
         $table->foreignId('user_id')->constrained()->onDelete('cascade');
+        $table->boolean('sync')->default(false);
         $table->timestamps();
         });
     }

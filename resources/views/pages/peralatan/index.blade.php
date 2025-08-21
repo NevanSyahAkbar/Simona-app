@@ -67,6 +67,23 @@
                                         </form>
                                         @endif
                                     </td>
+                                    <td>
+                                        {{-- INI ADALAH LOGIKA UTAMANYA --}}
+                                        @if ($item->sync)
+                                            {{-- Jika SUDAH sinkron (nilai = 1), tampilkan tombol disabled --}}
+                                            <button type="button" disabled style="background-color: #ccc; color: #666; cursor: not-allowed; padding: 8px 12px; border: none; border-radius: 5px;">
+                                                Tersinkronisasi
+                                            </button>
+                                        @else
+                                            {{-- Jika BELUM sinkron (nilai = 0), tampilkan form dengan tombol submit aktif --}}
+                                            <form action="{{ route('peralatan.kirimApi', $item->id) }}" method="POST">
+                                                @csrf
+                                                <button type="submit" style="background-color: #007bff; color: white; padding: 8px 12px; border: none; border-radius: 5px; cursor: pointer;">
+                                                    kirim
+                                                </button>
+                                            </form>
+                                        @endif
+                                    </td>
                                 </tr>
                             @empty
                                 <tr>
@@ -84,4 +101,94 @@
             </div>
         </div>
     </div>
+
+    @push('scripts')
+    @push('scripts')
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+
+    // =========================================================================
+    // BAGIAN BARU: Periksa localStorage saat halaman dimuat
+    // Loop semua form dan nonaktifkan jika ID-nya sudah ada di catatan
+    // =========================================================================
+    document.querySelectorAll('form.kirim-form[data-id]').forEach(form => {
+        const itemId = form.getAttribute('data-id');
+        if (localStorage.getItem('item_terkirim_' + itemId)) {
+            const tombol = form.querySelector('button');
+            if (tombol) {
+                tombol.disabled = true;
+                tombol.innerHTML = 'Terkirim';
+                form.onsubmit = (e) => e.preventDefault();
+            }
+        }
+    });
+
+
+    // =========================================================================
+    // Kode Anda yang sudah ada, dengan sedikit modifikasi
+    // =========================================================================
+    const tombolKirimSimulasi = document.getElementById('tombolKirimSimulasi');
+    const checkboxPilihSemua = document.getElementById('pilihSemua');
+    const semuaCheckboxItem = document.querySelectorAll('.pilih-item');
+    const csrfToken = document.querySelector('meta[name="csrf-token"]');
+
+    if (!csrfToken) {
+        console.error('CSRF Token meta tag not found!');
+        return;
+    }
+
+    if (tombolKirimSimulasi) {
+        // Fungsi perbaruiStatusTombol, event listener checkbox, dll. (tidak berubah)
+        function perbaruiStatusTombol() { /* ... kode Anda ... */ }
+        checkboxPilihSemua.addEventListener('change', function() { /* ... kode Anda ... */ });
+        semuaCheckboxItem.forEach(checkbox => { /* ... kode Anda ... */ });
+
+        // Event listener untuk tombol kirim massal
+        tombolKirimSimulasi.addEventListener('click', function() {
+            const idTerpilih = Array.from(document.querySelectorAll('.pilih-item:checked'))
+                                    .map(cb => cb.getAttribute('data-id'));
+
+            if (idTerpilih.length === 0 || !confirm(`Anda akan mengirim ${idTerpilih.length} data. Lanjutkan?`)) {
+                return;
+            }
+
+            const originalText = this.innerHTML;
+            this.disabled = true;
+            this.innerHTML = 'Mengirim...';
+
+            fetch("{{ route('peralatan.kirimApi', $item->id) }}", { // Sesuaikan dengan route bulk Anda
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json',
+                    'X-CSRF-TOKEN': csrfToken.getAttribute('content')
+                },
+                body: JSON.stringify({ ids: idTerpilih })
+            })
+            .then(response => response.json())
+            .then(data => {
+                alert(data.message || 'Proses berhasil dijalankan!');
+
+                // ===== MODIFIKASI UTAMA: Simpan catatan ke localStorage =====
+                idTerpilih.forEach(id => {
+                    localStorage.setItem('item_terkirim_' + id, 'true');
+                });
+                // ===========================================================
+
+                location.reload(); // Muat ulang halaman untuk melihat perubahan
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert(error.message || 'Terjadi kesalahan.');
+                this.disabled = false;
+                this.innerHTML = originalText;
+            });
+        });
+
+        perbaruiStatusTombol();
+    }
+});
+</script>
+@endpush
+    @endpush
 </x-app-layout>

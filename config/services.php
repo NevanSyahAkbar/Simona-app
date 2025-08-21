@@ -21,6 +21,7 @@ return [
         'scheme' => 'https',
     ],
 
+    
     'postmark' => [
         'token' => env('POSTMARK_TOKEN'),
     ],

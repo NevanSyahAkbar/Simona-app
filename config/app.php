@@ -27,8 +27,11 @@ return [
     | services the application utilizes. Set this in your ".env" file.
     |
     */
+    'api_tujuan_url' => env('API_TUJUAN_URL'),
+    'api_tujuan_token' => env('API_TUJUAN_TOKEN'),
 
     'env' => env('APP_ENV', 'production'),
+
 
     /*
     |--------------------------------------------------------------------------
