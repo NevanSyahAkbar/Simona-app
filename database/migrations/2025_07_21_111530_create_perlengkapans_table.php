@@ -15,6 +15,7 @@ return new class extends Migration
     {
     Schema::create('perlengkapans', function (Blueprint $table) {
         $table->id(); // Nomor Urut
+        $table->string('kode_perlengkapan')->unique()->after('id');
         $table->year('tahun');
         $table->string('sub_bagian');
         $table->string('pekerjaan');

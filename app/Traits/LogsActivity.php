@@ -24,6 +24,7 @@ trait LogsActivity
 
     protected static function logActivity($model, $action)
     {
+        
         ActivityLog::create([
             'user_id' => Auth::id(),
             'action' => $action,

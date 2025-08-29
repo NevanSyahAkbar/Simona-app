@@ -16,6 +16,7 @@ return new class extends Migration
 
     Schema::create('pemeliharaans', function (Blueprint $table) {
         $table->id(); // Nomor Urutan
+        $table->string('kode_pemeliharaan')->unique()->after('id');
         $table->string('pekerjaan');
         $table->string('laporan_bulanan')->nullable();
         $table->string('bast')->nullable();
@@ -28,6 +29,7 @@ return new class extends Migration
         $table->string('status');
         $table->text('keterangan')->nullable();
         $table->foreignId('user_id')->constrained()->onDelete('cascade');
+        $table->boolean('sync')->default(false);
         $table->timestamps();
         });
     }

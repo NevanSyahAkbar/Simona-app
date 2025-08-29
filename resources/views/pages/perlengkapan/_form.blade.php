@@ -15,14 +15,14 @@
     <!-- Tahun -->
     <div>
         <label for="tahun" class="block font-medium text-sm text-gray-700 dark:text-gray-300">Tahun</label>
-        <input type="number" name="tahun" id="tahun" class="form-input rounded-md shadow-sm mt-1 block w-full" value="{{ old('tahun', $perlengkapan->tahun ?? date('Y')) }}" required />
+        <input type="number" name="tahun" id="tahun" class="form-input rounded-md shadow-sm mt-1 block w-full bg-gray-200 border-gray-300 text-black" value="{{ old('tahun', $perlengkapan->tahun ?? date('Y')) }}" required />
     </div>
 
     <!-- Sub-Bagian dengan Tombol Kelola -->
     <div>
         <label for="sub_bagian" class="block font-medium text-sm text-gray-700 dark:text-gray-300">Sub-Bagian</label>
         <div class="flex items-center space-x-2 mt-1">
-            <select name="sub_bagian" id="sub_bagian" class="form-select rounded-md shadow-sm block w-full" required>
+            <select name="sub_bagian" id="sub_bagian" class="form-select rounded-md shadow-sm block w-full bg-gray-200 border-gray-300 text-black" required>
                 <option value="">Pilih Sub-Bagian</option>
                 @foreach($sub_bagians as $option)
                     <option value="{{ $option->value }}" {{ (old('sub_bagian', $perlengkapan->sub_bagian ?? '') == $option->value) ? 'selected' : '' }}>{{ $option->value }}</option>
@@ -39,54 +39,54 @@
     <!-- Pekerjaan -->
     <div class="lg:col-span-3">
         <label for="pekerjaan" class="block font-medium text-sm text-gray-700 dark:text-gray-300">Pekerjaan</label>
-        <input type="text" name="pekerjaan" id="pekerjaan" class="form-input rounded-md shadow-sm mt-1 block w-full" value="{{ old('pekerjaan', $perlengkapan->pekerjaan ?? '') }}" required />
+        <input type="text" name="pekerjaan" id="pekerjaan" class="form-input rounded-md shadow-sm mt-1 block w-full bg-gray-200 border-gray-300 text-black" value="{{ old('pekerjaan', $perlengkapan->pekerjaan ?? '') }}" required />
     </div>
 
     <!-- Baris Tanggal-tanggal -->
     <div>
         <label for="date_nd_user" class="block font-medium text-sm text-gray-700 dark:text-gray-300">Date ND User</label>
-        <input type="date" name="date_nd_user" id="date_nd_user" class="form-input rounded-md shadow-sm mt-1 block w-full" value="{{ old('date_nd_user', $perlengkapan->date_nd_user ?? '') }}" />
+        <input type="date" name="date_nd_user" id="date_nd_user" class="form-input rounded-md shadow-sm mt-1 block w-full bg-gray-200 border-gray-300 text-black" value="{{ old('date_nd_user', $perlengkapan->date_nd_user ?? '') }}" />
     </div>
     <div>
         <label for="date_survey" class="block font-medium text-sm text-gray-700 dark:text-gray-300">Date Survey</label>
-        <input type="date" name="date_survey" id="date_survey" class="form-input rounded-md shadow-sm mt-1 block w-full" value="{{ old('date_survey', $perlengkapan->date_survey ?? '') }}" />
+        <input type="date" name="date_survey" id="date_survey" class="form-input rounded-md shadow-sm mt-1 block w-full bg-gray-200 border-gray-300 text-black" value="{{ old('date_survey', $perlengkapan->date_survey ?? '') }}" />
     </div>
     <div>
         <label for="date_nd_ijin" class="block font-medium text-sm text-gray-700 dark:text-gray-300">Date ND Ijin</label>
-        <input type="date" name="date_nd_ijin" id="date_nd_ijin" class="form-input rounded-md shadow-sm mt-1 block w-full" value="{{ old('date_nd_ijin', $perlengkapan->date_nd_ijin ?? '') }}" />
+        <input type="date" name="date_nd_ijin" id="date_nd_ijin" class="form-input rounded-md shadow-sm mt-1 block w-full bg-gray-200 border-gray-300 text-black" value="{{ old('date_nd_ijin', $perlengkapan->date_nd_ijin ?? '') }}" />
     </div>
     <div>
         <label for="date_pr" class="block font-medium text-sm text-gray-700 dark:text-gray-300">Date PR</label>
-        <input type="date" name="date_pr" id="date_pr" class="form-input rounded-md shadow-sm mt-1 block w-full" value="{{ old('date_pr', $perlengkapan->date_pr ?? '') }}" />
+        <input type="date" name="date_pr" id="date_pr" class="form-input rounded-md shadow-sm mt-1 block w-full bg-gray-200 border-gray-300 text-black" value="{{ old('date_pr', $perlengkapan->date_pr ?? '') }}" />
     </div>
     <div>
         <label for="bast_user" class="block font-medium text-sm text-gray-700 dark:text-gray-300">Bast User</label>
-        <input type="date" name="bast_user" id="bast_user" class="form-input rounded-md shadow-sm mt-1 block w-full" value="{{ old('bast_user', $perlengkapan->bast_user ?? '') }}" />
+        <input type="date" name="bast_user" id="bast_user" class="form-input rounded-md shadow-sm mt-1 block w-full bg-gray-200 border-gray-300 text-black" value="{{ old('bast_user', $perlengkapan->bast_user ?? '') }}" />
     </div>
     <div>
         <label for="nd_pembayaran" class="block font-medium text-sm text-gray-700 dark:text-gray-300">ND Pembayaran</label>
-        <input type="date" name="nd_pembayaran" id="nd_pembayaran" class="form-input rounded-md shadow-sm mt-1 block w-full" value="{{ old('nd_pembayaran', $perlengkapan->nd_pembayaran ?? '') }}" />
+        <input type="date" name="nd_pembayaran" id="nd_pembayaran" class="form-input rounded-md shadow-sm mt-1 block w-full bg-gray-200 border-gray-300 text-black" value="{{ old('nd_pembayaran', $perlengkapan->nd_pembayaran ?? '') }}" />
     </div>
 
     <!-- Baris Nomor PR, PO, GR -->
     <div>
         <label for="pr_number" class="block font-medium text-sm text-gray-700 dark:text-gray-300">PR</label>
-        <input type="text" name="pr_number" id="pr_number" class="form-input rounded-md shadow-sm mt-1 block w-full" value="{{ old('pr_number', $perlengkapan->pr_number ?? '') }}" />
+        <input type="text" name="pr_number" id="pr_number" class="form-input rounded-md shadow-sm mt-1 block w-full bg-gray-200 border-gray-300 text-black" value="{{ old('pr_number', $perlengkapan->pr_number ?? '') }}" />
     </div>
     <div>
         <label for="po_number" class="block font-medium text-sm text-gray-700 dark:text-gray-300">PO</label>
-        <input type="text" name="po_number" id="po_number" class="form-input rounded-md shadow-sm mt-1 block w-full" value="{{ old('po_number', $perlengkapan->po_number ?? '') }}" />
+        <input type="text" name="po_number" id="po_number" class="form-input rounded-md shadow-sm mt-1 block w-full bg-gray-200 border-gray-300 text-black" value="{{ old('po_number', $perlengkapan->po_number ?? '') }}" />
     </div>
     <div>
         <label for="gr_number" class="block font-medium text-sm text-gray-700 dark:text-gray-300">GR</label>
-        <input type="text" name="gr_number" id="gr_number" class="form-input rounded-md shadow-sm mt-1 block w-full" value="{{ old('gr_number', $perlengkapan->gr_number ?? '') }}" />
+        <input type="text" name="gr_number" id="gr_number" class="form-input rounded-md shadow-sm mt-1 block w-full bg-gray-200 border-gray-300 text-black" value="{{ old('gr_number', $perlengkapan->gr_number ?? '') }}" />
     </div>
 
     <!-- Baris Order PADI, Status, DPP -->
     <div>
         <label for="order_padi" class="block font-medium text-sm text-gray-700 dark:text-gray-300">Order PADI</label>
         <div class="flex items-center space-x-2 mt-1">
-            <select name="order_padi" id="order_padi" class="form-select rounded-md shadow-sm block w-full" required>
+            <select name="order_padi" id="order_padi" class="form-select rounded-md shadow-sm block w-full bg-gray-200 border-gray-300 text-black" required>
                 <option value="">Pilih Order PADI</option>
                 @foreach($order_padis as $option)
                     <option value="{{ $option->value }}" {{ (old('order_padi', $perlengkapan->order_padi ?? '') == $option->value) ? 'selected' : '' }}>{{ $option->value }}</option>
@@ -102,7 +102,7 @@
     <div>
         <label for="status" class="block font-medium text-sm text-gray-700 dark:text-gray-300">Status</label>
         <div class="flex items-center space-x-2 mt-1">
-            <select name="status" id="status" class="form-select rounded-md shadow-sm block w-full" required>
+            <select name="status" id="status" class="form-select rounded-md shadow-sm block w-full bg-gray-200 border-gray-300 text-black" required>
                 <option value="">Pilih Status</option>
                 @foreach($statuses as $option)
                     <option value="{{ $option->value }}" {{ (old('status', $perlengkapan->status ?? '') == $option->value) ? 'selected' : '' }}>{{ $option->value }}</option>
@@ -117,19 +117,19 @@
     </div>
     <div>
         <label for="dpp" class="block font-medium text-sm text-gray-700 dark:text-gray-300">DPP</label>
-        <input type="number" step="0.01" name="dpp" id="dpp" class="form-input rounded-md shadow-sm mt-1 block w-full" value="{{ old('dpp', $perlengkapan->dpp ?? '') }}" required />
+        <input type="number" step="0.01" name="dpp" id="dpp" class="form-input rounded-md shadow-sm mt-1 block w-full bg-gray-200 border-gray-300 text-black" value="{{ old('dpp', $perlengkapan->dpp ?? '') }}" required />
     </div>
 
     <!-- Mitra -->
     <div>
         <label for="mitra" class="block font-medium text-sm text-gray-700 dark:text-gray-300">MITRA</label>
-        <input type="text" name="mitra" id="mitra" class="form-input rounded-md shadow-sm mt-1 block w-full" value="{{ old('mitra', $perlengkapan->mitra ?? '') }}" required />
+        <input type="text" name="mitra" id="mitra" class="form-input rounded-md shadow-sm mt-1 block w-full bg-gray-200 border-gray-300 text-black" value="{{ old('mitra', $perlengkapan->mitra ?? '') }}" required />
     </div>
 
     <!-- Keterangan -->
     <div class="lg:col-span-3">
         <label for="keterangan" class="block font-medium text-sm text-gray-700 dark:text-gray-300">Keterangan</label>
-        <textarea name="keterangan" id="keterangan" class="form-input rounded-md shadow-sm mt-1 block w-full" rows="3">{{ old('keterangan', $perlengkapan->keterangan ?? '') }}</textarea>
+        <textarea name="keterangan" id="keterangan" class="form-input rounded-md shadow-sm mt-1 block w-full bg-gray-200 border-gray-300 text-black" rows="3">{{ old('keterangan', $perlengkapan->keterangan ?? '') }}</textarea>
     </div>
 </div>
 

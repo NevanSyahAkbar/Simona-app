@@ -3,68 +3,68 @@
     <!-- Tahun -->
    <div>
         <label for="tahun" class="block font-medium text-sm text-white">Tahun</label>
-        <input type="number" name="tahun" id="tahun" class="form-input rounded-md shadow-sm mt-1 block w-full" value="{{ old('tahun', $peralatan->tahun ?? date('Y')) }}" required />
+        <input type="number" name="tahun" id="tahun" class="form-input rounded-md shadow-sm mt-1 block w-full bg-gray-200 border-gray-300 text-black" value="{{ old('tahun', $peralatan->tahun ?? date('Y')) }}" required />
     </div>
 
     <!-- Pekerjaan -->
     <div class="lg:col-span-2">
         <label for="pekerjaan" class="block font-medium text-sm text-white">Pekerjaan</label>
-        <input type="text" name="pekerjaan" id="pekerjaan" class="form-input rounded-md shadow-sm mt-1 block w-full" value="{{ old('pekerjaan', $peralatan->pekerjaan ?? '') }}" required />
+        <input type="text" name="pekerjaan" id="pekerjaan" class="form-input rounded-md shadow-sm mt-1 block w-full bg-gray-200 border-gray-300 text-black" value="{{ old('pekerjaan', $peralatan->pekerjaan ?? '') }}" required />
     </div>
 
     <!-- ND Ijin -->
     <div>
         <label for="nd_ijin" class="block font-medium text-sm text-white">ND Ijin</label>
-        <input type="date" name="nd_ijin" id="nd_ijin" class="form-input rounded-md shadow-sm mt-1 block w-full" value="{{ old('nd_ijin', $peralatan->nd_ijin ?? '') }}" />
+        <input type="date" name="nd_ijin" id="nd_ijin" class="form-input rounded-md shadow-sm mt-1 block w-full bg-gray-200 border-gray-300 text-black" value="{{ old('nd_ijin', $peralatan->nd_ijin ?? '') }}" />
     </div>
 
     <!-- Date PR -->
     <div>
         <label for="date_pr" class="block font-medium text-sm text-white">Date PR</label>
-        <input type="date" name="date_pr" id="date_pr" class="form-input rounded-md shadow-sm mt-1 block w-full" value="{{ old('date_pr', $peralatan->date_pr ?? '') }}" />
+        <input type="date" name="date_pr" id="date_pr" class="form-input rounded-md shadow-sm mt-1 block w-full bg-gray-200 border-gray-300 text-black" value="{{ old('date_pr', $peralatan->date_pr ?? '') }}" />
     </div>
 
     <!-- PR Number -->
     <div>
         <label for="pr_number" class="block font-medium text-sm text-white">PR</label>
-        <input type="text" name="pr_number" id="pr_number" class="form-input rounded-md shadow-sm mt-1 block w-full" value="{{ old('pr_number', $peralatan->pr_number ?? '') }}" />
+        <input type="text" name="pr_number" id="pr_number" class="form-input rounded-md shadow-sm mt-1 block w-full bg-gray-200 border-gray-300 text-black" value="{{ old('pr_number', $peralatan->pr_number ?? '') }}" />
     </div>
 
     <!-- PO Number -->
     <div>
         <label for="po_number" class="block font-medium text-sm text-white">PO</label>
-        <input type="text" name="po_number" id="po_number" class="form-input rounded-md shadow-sm mt-1 block w-full" value="{{ old('po_number', $peralatan->po_number ?? '') }}" />
+        <input type="text" name="po_number" id="po_number" class="form-input rounded-md shadow-sm mt-1 block w-full bg-gray-200 border-gray-300 text-black" value="{{ old('po_number', $peralatan->po_number ?? '') }}" />
     </div>
 
     <!-- GR String -->
     <div>
         <label for="gr_string" class="block font-medium text-sm text-white">GR</label>
-        <input type="text" name="gr_string" id="gr_string" class="form-input rounded-md shadow-sm mt-1 block w-full" value="{{ old('gr_string', $peralatan->gr_string ?? '') }}" />
+        <input type="text" name="gr_string" id="gr_string" class="form-input rounded-md shadow-sm mt-1 block w-full bg-gray-200 border-gray-300 text-black" value="{{ old('gr_string', $peralatan->gr_string ?? '') }}" />
     </div>
 
     <!-- ND Pembayaran -->
     <div>
         <label for="nd_pembayaran" class="block font-medium text-sm text-white">ND Pembayaran</label>
-        <input type="date" name="nd_pembayaran" id="nd_pembayaran" class="form-input rounded-md shadow-sm mt-1 block w-full" value="{{ old('nd_pembayaran', $peralatan->nd_pembayaran ?? '') }}" />
+        <input type="date" name="nd_pembayaran" id="nd_pembayaran" class="form-input rounded-md shadow-sm mt-1 block w-full bg-gray-200 border-gray-300 text-black" value="{{ old('nd_pembayaran', $peralatan->nd_pembayaran ?? '') }}" />
     </div>
 
     <!-- DPP -->
     <div>
         <label for="dpp" class="block font-medium text-sm text-white">DPP</label>
-        <input type="number" step="0.01" name="dpp" id="dpp" class="form-input rounded-md shadow-sm mt-1 block w-full" value="{{ old('dpp', $peralatan->dpp ?? '') }}" required />
+        <input type="number" step="0.01" name="dpp" id="dpp" class="form-input rounded-md shadow-sm mt-1 block w-full bg-gray-200 border-gray-300 text-black" value="{{ old('dpp', $peralatan->dpp ?? '') }}" required />
     </div>
 
     <!-- Mitra -->
     <div>
         <label for="mitra" class="block font-medium text-sm text-white">Mitra</label>
-        <input type="text" name="mitra" id="mitra" class="form-input rounded-md shadow-sm mt-1 block w-full" value="{{ old('mitra', $peralatan->mitra ?? '') }}" required />
+        <input type="text" name="mitra" id="mitra" class="form-input rounded-md shadow-sm mt-1 block w-full bg-gray-200 border-gray-300 text-black" value="{{ old('mitra', $peralatan->mitra ?? '') }}" required />
     </div>
 
     <!-- Status dengan Tombol Kelola -->
     <div>
         <label for="status" class="block font-medium text-sm text-white">Status</label>
         <div class="flex items-center space-x-2 mt-1">
-            <select name="status" id="status" class="form-select rounded-md shadow-sm block w-full" required>
+            <select name="status" id="status" class="form-select rounded-md shadow-sm block w-full bg-gray-200 border-gray-300 text-black" required>
                 <option value="">Pilih Status</option>
                 @foreach($statuses as $option)
                     <option value="{{ $option->value }}" {{ (old('status', $peralatan->status ?? '') == $option->value) ? 'selected' : '' }}>{{ $option->value }}</option>
@@ -80,8 +80,8 @@
 
     <!-- Keterangan -->
     <div class="lg:col-span-3">
-        <label for="keterangan" class="block font-medium text-sm text-white">Keterangan</label>
-        <textarea name="keterangan" id="keterangan" class="form-input rounded-md shadow-sm mt-1 block w-full" rows="3">{{ old('keterangan', $peralatan->keterangan ?? '') }}</textarea>
+        <label for="keterangan" class="block font-medium text-sm text-blue">Keterangan</label>
+        <textarea name="keterangan" id="keterangan" class="form-input rounded-md shadow-sm mt-1 block w-full bg-gray-200 border-gray-300 text-black" rows="3">{{ old('keterangan', $peralatan->keterangan ?? '') }}</textarea>
     </div>
 </div>
 <div class="flex items-center justify-end mt-6">

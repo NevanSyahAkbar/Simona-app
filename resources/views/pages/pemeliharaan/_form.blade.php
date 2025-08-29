@@ -3,53 +3,53 @@
     <!-- Pekerjaan -->
     <div class="lg:col-span-3">
         <label for="pekerjaan" class="block font-medium text-sm text-gray-300">Pekerjaan</label>
-        <input type="text" name="pekerjaan" id="pekerjaan" class="form-input rounded-md shadow-sm mt-1 block w-full" value="{{ old('pekerjaan', $pemeliharaan->pekerjaan ?? '') }}" required />
+        <input type="text" name="pekerjaan" id="pekerjaan" class="form-input rounded-md shadow-sm mt-1 block w-full bg-gray-200 border-gray-300 text-black" value="{{ old('pekerjaan', $pemeliharaan->pekerjaan ?? '') }}" required />
     </div>
     <!-- Laporan Bulanan -->
     <div>
         <label for="laporan_bulanan" class="block font-medium text-sm text-gray-300">Laporan Bulanan</label>
-        <input type="text" name="laporan_bulanan" id="laporan_bulanan" class="form-input rounded-md shadow-sm mt-1 block w-full" value="{{ old('laporan_bulanan', $pemeliharaan->laporan_bulanan ?? '') }}" />
+        <input type="text" name="laporan_bulanan" id="laporan_bulanan" class="form-input rounded-md shadow-sm mt-1 block w-full bg-gray-200 border-gray-300 text-black" value="{{ old('laporan_bulanan', $pemeliharaan->laporan_bulanan ?? '') }}" />
     </div>
     <!-- BAST -->
     <div>
         <label for="bast" class="block font-medium text-sm text-gray-300">BAST</label>
-        <input type="text" name="bast" id="bast" class="form-input rounded-md shadow-sm mt-1 block w-full" value="{{ old('bast', $pemeliharaan->bast ?? '') }}" />
+        <input type="text" name="bast" id="bast" class="form-input rounded-md shadow-sm mt-1 block w-full bg-gray-200 border-gray-300 text-black" value="{{ old('bast', $pemeliharaan->bast ?? '') }}" />
     </div>
     <!-- BAPF -->
     <div>
         <label for="bapf" class="block font-medium text-sm text-gray-300">BAPF</label>
-        <input type="text" name="bapf" id="bapf" class="form-input rounded-md shadow-sm mt-1 block w-full" value="{{ old('bapf', $pemeliharaan->bapf ?? '') }}" />
+        <input type="text" name="bapf" id="bapf" class="form-input rounded-md shadow-sm mt-1 block w-full bg-gray-200 border-gray-300 text-black" value="{{ old('bapf', $pemeliharaan->bapf ?? '') }}" />
     </div>
     <!-- BAP -->
     <div>
         <label for="bap" class="block font-medium text-sm text-gray-300">BAP</label>
-        <input type="text" name="bap" id="bap" class="form-input rounded-md shadow-sm mt-1 block w-full" value="{{ old('bap', $pemeliharaan->bap ?? '') }}" />
+        <input type="text" name="bap" id="bap" class="form-input rounded-md shadow-sm mt-1 block w-full bg-gray-200 border-gray-300 text-black" value="{{ old('bap', $pemeliharaan->bap ?? '') }}" />
     </div>
     <!-- Dok. Tagihan -->
     <div>
         <label for="dok_tagihan" class="block font-medium text-sm text-gray-300">Dok. Tagihan</label>
-        <input type="text" name="dok_tagihan" id="dok_tagihan" class="form-input rounded-md shadow-sm mt-1 block w-full" value="{{ old('dok_tagihan', $pemeliharaan->dok_tagihan ?? '') }}" />
+        <input type="text" name="dok_tagihan" id="dok_tagihan" class="form-input rounded-md shadow-sm mt-1 block w-full bg-gray-200 border-gray-300 text-black" value="{{ old('dok_tagihan', $pemeliharaan->dok_tagihan ?? '') }}" />
     </div>
     <!-- ND Pembayaran -->
     <div>
         <label for="nd_pembayaran" class="block font-medium text-sm text-gray-300">ND Pembayaran</label>
-        <input type="date" name="nd_pembayaran" id="nd_pembayaran" class="form-input rounded-md shadow-sm mt-1 block w-full" value="{{ old('nd_pembayaran', $pemeliharaan->nd_pembayaran ?? '') }}" />
+        <input type="date" name="nd_pembayaran" id="nd_pembayaran" class="form-input rounded-md shadow-sm mt-1 block w-full bg-gray-200 border-gray-300 text-black" value="{{ old('nd_pembayaran', $pemeliharaan->nd_pembayaran ?? '') }}" />
     </div>
     <!-- DPP -->
     <div>
         <label for="dpp" class="block font-medium text-sm text-gray-300">DPP</label>
-        <input type="number" step="0.01" name="dpp" id="dpp" class="form-input rounded-md shadow-sm mt-1 block w-full" value="{{ old('dpp', $pemeliharaan->dpp ?? '') }}" required />
+        <input type="number" step="0.01" name="dpp" id="dpp" class="form-input rounded-md shadow-sm mt-1 block w-full bg-gray-200 border-gray-300 text-black" value="{{ old('dpp', $pemeliharaan->dpp ?? '') }}" required />
     </div>
     <!-- Mitra -->
     <div>
         <label for="mitra" class="block font-medium text-sm text-gray-300">Mitra</label>
-        <input type="text" name="mitra" id="mitra" class="form-input rounded-md shadow-sm mt-1 block w-full" value="{{ old('mitra', $pemeliharaan->mitra ?? '') }}" required />
+        <input type="text" name="mitra" id="mitra" class="form-input rounded-md shadow-sm mt-1 block w-full bg-gray-200 border-gray-300 text-black" value="{{ old('mitra', $pemeliharaan->mitra ?? '') }}" required />
     </div>
     <!-- Status dengan Tombol Kelola -->
     <div>
         <label for="status" class="block font-medium text-sm text-gray-300">Status</label>
         <div class="flex items-center space-x-2 mt-1">
-            <select name="status" id="status" class="form-select rounded-md shadow-sm block w-full" required>
+            <select name="status" id="status" class="form-select rounded-md shadow-sm block w-full bg-gray-200 border-gray-300 text-black" required>
                 <option value="">Pilih Status</option>
                 @foreach($statuses as $option)
                     <option value="{{ $option->value }}" {{ (old('status', $pemeliharaan->status ?? '') == $option->value) ? 'selected' : '' }}>{{ $option->value }}</option>
@@ -65,7 +65,7 @@
     <!-- Keterangan -->
     <div class="lg:col-span-3">
         <label for="keterangan" class="block font-medium text-sm text-gray-300">Keterangan</label>
-        <textarea name="keterangan" id="keterangan" class="form-input rounded-md shadow-sm mt-1 block w-full" rows="3">{{ old('keterangan', $pemeliharaan->keterangan ?? '') }}</textarea>
+        <textarea name="keterangan" id="keterangan" class="form-input rounded-md shadow-sm mt-1 block w-full bg-gray-200 border-gray-300 text-black" rows="3">{{ old('keterangan', $pemeliharaan->keterangan ?? '') }}</textarea>
     </div>
 </div>
 <div class="flex items-center justify-end mt-6">

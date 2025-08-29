@@ -7,7 +7,7 @@
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg p-6">
+            <div class="bg-gray-800 text-gray-200 overflow-hidden shadow-sm sm:rounded-lg p-6">
 
                 {{-- Form ini akan mengirim data ke method 'update' di controller --}}
                 <form action="{{ route('pemeliharaan.update', $pemeliharaan->id) }}" method="POST">

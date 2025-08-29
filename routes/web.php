@@ -27,23 +27,29 @@ Route::middleware([
 
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
+    // ===================== PERLENGKAPAN =====================
     Route::resource('perlengkapan', PerlengkapanController::class);
+    Route::prefix('perlengkapan')->name('perlengkapan.')->group(function () {
+        Route::post('kirim-api/{id}', [PerlengkapanController::class, 'kirimDataPerlengkapan'])->name('kirimApi');
+        Route::post('{perlengkapan}/sinkronkan', [PerlengkapanController::class, 'tandaiSinkron'])->name('sinkronkan');
+    });
 
-// Route untuk mengirim SATU data
-    Route::post('perlengkapan/kirim-api/{id}', [PerlengkapanController::class, 'kirimDataPerlengkapan'])->name('perlengkapan.kirimApi');
-
-    Route::post('/perlengkapan/{perlengkapan}/sinkronkan', [PerlengkapanController::class, 'tandaiSinkron'])->name('perlengkapan.sinkronkan');
-
-
+    // ===================== PERALATAN =====================
     Route::resource('peralatan', PeralatanController::class);
-    // masukan sourced untuk pengiriman data peralatan
-    // routes/web.php atau routes/api.php
-    Route::post('peralatan/kirim-api/{id}', [PeralatanController::class, 'kirimDataPeralatan'])->name('peralatan.kirimApi');
-    Route::post('/peralatan/{peralatan}/sinkronkan', [PeralatanController::class, 'tandaiSinkron'])->name('peralatan.sinkronkan');
+    Route::prefix('peralatan')->name('peralatan.')->group(function () {
+        Route::post('kirim-api/{id}', [PeralatanController::class, 'kirimDataPeralatan'])->name('kirimApi');
+        Route::post('{peralatan}/sinkronkan', [PeralatanController::class, 'tandaiSinkron'])->name('sinkronkan');
+    });
+    Route::post('/peralatan/kirim-api-bulk', [PeralatanController::class, 'kirimApiBulk'])->name('peralatan.kirimApi.bulk');
 
+    // ===================== PEMELIHARAAN =====================
     Route::resource('pemeliharaan', PemeliharaanController::class);
+    Route::prefix('pemeliharaan')->name('pemeliharaan.')->group(function () {
+        Route::post('kirim-api/{id}', [PemeliharaanController::class, 'kirimDataPemeliharaan'])->name('kirimApi');
+        Route::post('{pemeliharaan}/sinkronkan', [PemeliharaanController::class, 'tandaiSinkron'])->name('sinkronkan');
+    });
 
-    // Grup khusus untuk admin
+    // ===================== ADMIN ONLY =====================
     Route::middleware(['role:admin'])->group(function () {
         Route::resource('options', OptionController::class)->except(['show']);
         Route::get('activity-log', [ActivityLogController::class, 'index'])->name('activity-log.index');
@@ -52,14 +58,11 @@ Route::middleware([
         Route::post('anggaran', [AnggaranController::class, 'store'])->name('anggaran.store');
         Route::put('anggaran/{anggaran}', [AnggaranController::class, 'update'])->name('anggaran.update');
         Route::delete('anggaran/{anggaran}', [AnggaranController::class, 'destroy'])->name('anggaran.destroy');
-
-        
     });
 });
 
-
 // ===================================================================
-// ===== KODE UNTUK TES DIAGNOSTIK (TAMBAHKAN DI SINI) ===============
+// ========== KODE UNTUK TES DIAGNOSTIK (OPSIONAL) ==================
 // ===================================================================
 
 Route::get('/test-sesi', function () {

@@ -17,6 +17,7 @@ class Peralatan extends Model
 
     use HasFactory, LogsActivity;
      protected $fillable = [
+        'kode_peralatan',
         'tahun',
         'pekerjaan',
         'nd_ijin',
